@@ -93,10 +93,57 @@ void Kalkulator_Daya_Listrik () {
     printf("Daya Listrik (P): %.2lf Watt\n", P);
 }
 void Kalkulator_Resistor_Seri () {  
+    int n;
+    D R, total = 0;
     
+    printf("Masukkan jumlah resistor: ");
+    scanf("%d", &n);
+
+    if (n <= 0) {
+        printf("Jumlah resistor tidak valid.\n");
+        return;
+    }
+
+    for (int i = 1; i <= n; i++) {
+        printf("Masukkan nilai resistor ke-%d (Ohm): ", i);
+        scanf("%lf", &R);
+        total += R;
+    }
+    
+    printf("Rtotal = %.2lf Ohm\n", total);
 }
 void Kalkulator_Resistor_Paralel () {  
-    
+    int n;
+    D R, total_kebalikan = 0.0, Rtotal;
+
+    printf("Masukkan jumlah resistor: ");
+    scanf("%d", &n);
+
+    if (n <= 0) {
+        printf("Jumlah resistor tidak valid.\n");
+        return;
+    }
+
+    for (int i = 1; i <= n; i++) {
+        printf("Masukkan nilai resistor ke-%d (Ohm): ", i);
+        scanf("%lf", &R);
+
+        if (R == 0) {
+            printf("Error: Nilai resistor tidak boleh 0 Ohm!\n");
+            return;
+        }
+
+        total_kebalikan += (1.0 / R);
+    }
+
+    if (total_kebalikan == 0) {
+        printf("Error perhitungan!\n");
+        return;
+    }
+
+    Rtotal = 1.0 / total_kebalikan;
+
+    printf("Rtotal = %.2lf Ohm\n", Rtotal);
 }
 void Desimal_Ke_Lainnya () {    
      ll desimal;
@@ -148,33 +195,31 @@ int main () {
     case 1:
         Kalkulator_Hukum_Ohm ();
         break;
-
     case 2:
-        Kalkulator_Daya_Listrik ();v
+        Kalkulator_Daya_Listrik ();
         break;  
-
     case 3:
-
+        Kalkulator_Resistor_Seri ();
         break;
-
     case 4:
-
-        break;  
+        Kalkulator_Resistor_Paralel ();
+        break;    
     case 5:
         Desimal_Ke_Lainnya ();
-        break;
+        break;  
     case 6:
         Biner_Ke_Desimal ();
         break;
     case 7:
         Oktal_Ke_Desimal ();
-        break;
+        break; 
     case 8:
         Heksadesimal_Ke_Desimal ();
-        break;
+        break; 
     case 9:
         printf("Keluar dari program.\n");
         return 0;
+        
     default:
         printf("Pilihan tidak valid. Silakan coba lagi.\n");
         break;  
