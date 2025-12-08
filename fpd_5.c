@@ -25,10 +25,72 @@ void menu () {
     scanf("%d", &input_menu);
 }
 void Kalkulator_Hukum_Ohm () {
+    int pilih;
+    D V, I, R;
+
+    puts("Pilih besaran dasar hukum ohm yang ingin dihitung");
+    puts("1. Tegangan (V)");
+    puts("2. Arus (I)");
+    puts("3. Hambatan (R)");
+    printf("Pilihan (1-3): ");
+    scanf("%d", &pilih);
+
+    if (pilih == 1) {
+        printf("Masukkan nilai arus (I): ");
+        scanf("%lf", &I);
+        printf("Masukkan nilai hambatan (R): ");
+        scanf("%lf", &R);
+        V = I * R;
+        printf("\n");
+        printf("Tegangan (V) : %.2lf Volt\n", V);
+    }
+    else if (pilih == 2) {
+        printf("Masukkan nilai tegangan (V): ");
+        scanf("%lf", &V);
+        printf("Masukkan nilai hambatan (R): ");
+        scanf("%lf", &R);
+
+        if (R == 0) {
+            printf("Error: hambatan (R) tidak boleh 0\n");
+            return;
+        }
+
+        I = V / R;
+        printf("\n");
+        printf("Arus (I) : %.2lf Ampere\n", I);
+    }
+    else if (pilih == 3) {
+        printf("Masukkan nilai tegangan (V): ");
+        scanf("%lf", &V);
+        printf("Masukkan nilai arus (I): ");
+        scanf("%lf", &I);
+
+        if (I == 0) {
+            printf("Error: arus (I) tidak boleh 0\n");
+            return;
+        }
+
+        R = V / I;
+        printf("\n");
+        printf("Hambatan (I) : %.2lf Ohm\n", R);
+    }
+    else {
+        printf("Pilihan tidak valid\n");
+    }
     
 }
 void Kalkulator_Daya_Listrik () {   
-    
+    D P,V,I;
+
+    printf("masukkan nilai tegangan (V):");
+    scanf("%lf", &V);
+
+    printf("masukkan nilai arus (I):");
+    scanf("%lf", &I);
+
+    P = V * I;
+    printf("\n");
+    printf("Daya Listrik (P): %.2lf Watt\n", P);
 }
 void Kalkulator_Resistor_Seri () {  
     
@@ -84,11 +146,11 @@ int main () {
         switch (*&input_menu)
     {
     case 1:
-
+        Kalkulator_Hukum_Ohm ();
         break;
 
     case 2:
-        
+        Kalkulator_Daya_Listrik ();v
         break;  
 
     case 3:
