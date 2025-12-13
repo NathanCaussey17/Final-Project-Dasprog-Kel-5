@@ -1,9 +1,22 @@
 #include <stdio.h>
+#include <string.h>
+#include <ctype.h>
 
 typedef double D;
 typedef long long ll;
 
-int input_menu = 1 <= input_menu <= 9; 
+char digit[] = "0123456789ABCDEF";
+int input_menu;
+int input_angka_aman(int *hasil) {
+    char buf[64];
+
+    if (!fgets(buf, sizeof(buf), stdin))
+        return 0;
+
+    if (sscanf(buf, "%d", hasil) != 1)
+        return 0;
+    return 1;
+}
 void menu () {
     puts("================================================\n");
     puts("| TOOLKIT LENGKAP ASISTEN LABORATORIUM ELEKTRO |\n");
@@ -22,7 +35,9 @@ void menu () {
     puts("|                                              |\n");
     puts("| 9. Keluar                                    |\n");
     printf("Masukkan Pilihan Anda (1-9) : ");
-    scanf("%d", &input_menu);
+    if (!input_angka_aman(&input_menu)) {
+        input_menu = -1;
+    }
 }
 void Kalkulator_Hukum_Ohm () {
     int pilih;
@@ -145,95 +160,165 @@ void Kalkulator_Resistor_Paralel () {
 
     printf("Rtotal = %.2lf Ohm\n", Rtotal);
 }
-void Desimal_Ke_Lainnya () {    
-     ll desimal;
-            printf("Masukkan bilangan desimal: ");
-            scanf("%lld", &desimal);
-
-            printf("Biner: ");
-            for (int i = 31; i >= 0; i--) {
-                putchar((desimal & (1 << i)) ? '1' : '0');
-            }
-            printf("\n");
-
-            printf("Oktal: %llo\n", desimal);
-            
-            printf("Heksadesimal: %llX\n", desimal);
-}
-void Biner_Ke_Desimal () {  
-    char biner[33];
-            printf("Masukkan bilangan Biner: ");
-            scanf("%s", biner);
-            ll desimal = 0;
-            for (int i = 0; biner[i] != '\0'; i++) {
-                desimal = (desimal << 1) + (biner[i] - '0');
-            }
-            printf("Desimal: %lld\n", desimal);
-}
-void Oktal_Ke_Desimal () {  
-    ll oktal;
-            printf("Masukkan bilangan Oktal: ");
-            scanf("%llo", &oktal);
-            printf("Desimal: %lld\n", oktal);
-}
-void Heksadesimal_Ke_Desimal () {    
-   char heksa[17];
-            printf("Masukkan bilangan Heksadesimal: ");
-            scanf("%s", heksa);
-            ll desimal = 0;
-            sscanf(heksa, "%llx", &desimal);
-            printf("Desimal: %lld\n", desimal);
+void cetak_integer(long long n, int basis) {
+    if (n == 0) return;
+    cetak_integer(n / basis, basis);
+    putchar(digit[n % basis]);
 }
 
-int main () {
-    
-    do
-    {
+void Desimal_Ke_Lainnya() {
+    D x, frac;
+    ll n;
+    int basis, i;
+
+    printf("Masukkan bilangan desimal: ");
+    scanf("%lf", &x);
+
+    n = (long long)x;
+    frac = x - n;
+
+    printf("Biner: ");
+    if (n == 0) putchar('0');
+    else cetak_integer(n, 2);
+
+    if (frac > 0) {
+        putchar('.');
+        double f = frac;
+        for (i = 0; i < 10; i++) {
+            f *= 2;
+            int d = (int)f;
+            putchar(digit[d]);
+            f -= d;
+            if (f == 0) break;
+        }
+    }
+    putchar('\n');
+
+
+    printf("Oktal: ");
+    if (n == 0) putchar('0');
+    else cetak_integer(n, 8);
+
+    if (frac > 0) {
+        putchar('.');
+        double f = frac;
+        for (i = 0; i < 10; i++) {
+            f *= 8;
+            int d = (int)f;
+            putchar(digit[d]);
+            f -= d;
+            if (f == 0) break;
+        }
+    }
+    putchar('\n');
+
+    printf("Heksadesimal: ");
+    if (n == 0) putchar('0');
+    else cetak_integer(n, 16);
+
+    if (frac > 0) {
+        putchar('.');
+        double f = frac;
+        for (i = 0; i < 10; i++) {
+            f *= 16;
+            int d = (int)f;
+            putchar(digit[d]);
+            f -= d;
+            if (f == 0) break;
+        }
+    }
+    putchar('\n');
+    getchar();
+}
+ll konversi_posisional(const char *angka, int basis) {
+    ll hasil = 0;
+    int panjang = strlen(angka);
+    for (int i = 0; i < panjang; i++) {
+        char c = toupper(angka[i]); // support huruf kecil
+        int nilai;
+
+        if (c >= '0' && c <= '9') nilai = c - '0';
+        else if (c >= 'A' && c <= 'F') nilai = 10 + (c - 'A');
+        else {
+            printf("Error: karakter '%c' tidak valid untuk basis %d\n", c, basis);
+            return -1;
+        }
+
+        if (nilai >= basis) {
+            printf("Error: digit '%c' tidak valid untuk basis %d\n", c, basis);
+            return -1;
+        }
+
+        hasil = hasil * basis + nilai;
+    }
+    return hasil;
+}
+
+void Biner_Ke_Desimal() {
+    char biner[65];
+    printf("Masukkan bilangan Biner: ");
+    scanf("%s", biner);
+    ll desimal = konversi_posisional(biner, 2);
+    if (desimal != -1) printf("Desimal: %lld\n", desimal);
+}
+
+void Oktal_Ke_Desimal() {
+    char oktal[23];
+    printf("Masukkan bilangan Oktal: ");
+    scanf("%s", oktal);
+    ll desimal = konversi_posisional(oktal, 8);
+    if (desimal != -1) printf("Desimal: %lld\n", desimal);
+}
+
+void Heksadesimal_Ke_Desimal() {
+    char heksa[17];
+    printf("Masukkan bilangan Heksadesimal: ");
+    scanf("%s", heksa);
+    ll desimal = konversi_posisional(heksa, 16);
+    if (desimal != -1) printf("Desimal: %lld\n", desimal);
+}
+
+int main(void) {
+    while (1) {
         menu();
-        switch (*&input_menu)
-    {
-    case 1:
-        Kalkulator_Hukum_Ohm ();
-        break;
-    case 2:
-        Kalkulator_Daya_Listrik ();
-        break;  
-    case 3:
-        Kalkulator_Resistor_Seri ();
-        break;
-    case 4:
-        Kalkulator_Resistor_Paralel ();
-        break;    
-    case 5:
-        Desimal_Ke_Lainnya ();
-        break;  
-    case 6:
-        Biner_Ke_Desimal ();
-        break;
-    case 7:
-        Oktal_Ke_Desimal ();
-        break; 
-    case 8:
-        Heksadesimal_Ke_Desimal ();
-        break; 
-    case 9:
-        printf("Keluar dari program.\n");
-        return 0;
-        
-    default:
-        printf("Pilihan tidak valid. Silakan coba lagi.\n");
-        break;  
+
+        switch (input_menu) {
+        case 1:
+            Kalkulator_Hukum_Ohm();
+            break;
+        case 2:
+            Kalkulator_Daya_Listrik();
+            break;
+        case 3:
+            Kalkulator_Resistor_Seri();
+            break;
+        case 4:
+            Kalkulator_Resistor_Paralel();
+            break;
+        case 5:
+            Desimal_Ke_Lainnya();
+            break;
+        case 6:
+            Biner_Ke_Desimal();
+            break;
+        case 7:
+            Oktal_Ke_Desimal();
+            break;
+        case 8:
+            Heksadesimal_Ke_Desimal();
+            break;
+        case 9:
+            puts("Keluar dari program.");
+            return 0;
+        default:
+            puts("Pilihan tidak valid.");
+            break;
+        }
+        printf("\nTekan Enter untuk kembali ke menu");
+        getchar();
     }
 }
-     while (getchar() != '\n');
-     puts ("Tekan Enter untuk kembali ke menu utama");
-     getchar();
-     menu();
-     
-    
-    return 0;
-}
+
 
     
     
-
