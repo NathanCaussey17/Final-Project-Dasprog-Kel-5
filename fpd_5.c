@@ -55,6 +55,7 @@ void Kalkulator_Hukum_Ohm () {
         scanf("%lf", &I);
         printf("Masukkan nilai hambatan (R): ");
         scanf("%lf", &R);
+        while (getchar() != '\n');
         V = I * R;
         printf("\n");
         printf("Tegangan (V) : %.2lf Volt\n", V);
@@ -64,6 +65,7 @@ void Kalkulator_Hukum_Ohm () {
         scanf("%lf", &V);
         printf("Masukkan nilai hambatan (R): ");
         scanf("%lf", &R);
+        while (getchar() != '\n');
 
         if (R == 0) {
             printf("Error: hambatan (R) tidak boleh 0\n");
@@ -79,6 +81,7 @@ void Kalkulator_Hukum_Ohm () {
         scanf("%lf", &V);
         printf("Masukkan nilai arus (I): ");
         scanf("%lf", &I);
+        while (getchar() != '\n');
 
         if (I == 0) {
             printf("Error: arus (I) tidak boleh 0\n");
@@ -99,9 +102,11 @@ void Kalkulator_Daya_Listrik () {
 
     printf("masukkan nilai tegangan (V):");
     scanf("%lf", &V);
+    while (getchar() != '\n');
 
     printf("masukkan nilai arus (I):");
     scanf("%lf", &I);
+    while (getchar() != '\n');
 
     P = V * I;
     printf("\n");
@@ -109,10 +114,11 @@ void Kalkulator_Daya_Listrik () {
 }
 void Kalkulator_Resistor_Seri () {  
     int n;
-    D R, total = 0.0;
+    D R, total = 0;
     
     printf("Masukkan jumlah resistor: ");
     scanf("%d", &n);
+    while (getchar() != '\n');
 
     if (n <= 0) {
         printf("Jumlah resistor tidak valid.\n");
@@ -122,6 +128,7 @@ void Kalkulator_Resistor_Seri () {
     for (int i = 1; i <= n; i++) {
         printf("Masukkan nilai resistor ke-%d (Ohm): ", i);
         scanf("%lf", &R);
+        while (getchar() != '\n');
         total += R;
     }
     
@@ -133,6 +140,7 @@ void Kalkulator_Resistor_Paralel () {
 
     printf("Masukkan jumlah resistor: ");
     scanf("%d", &n);
+    while (getchar() != '\n');
 
     if (n <= 0) {
         printf("Jumlah resistor tidak valid.\n");
@@ -142,6 +150,7 @@ void Kalkulator_Resistor_Paralel () {
     for (int i = 1; i <= n; i++) {
         printf("Masukkan nilai resistor ke-%d (Ohm): ", i);
         scanf("%lf", &R);
+        while (getchar() != '\n');
 
         if (R == 0) {
             printf("Error: Nilai resistor tidak boleh 0 Ohm!\n");
@@ -234,7 +243,7 @@ ll konversi_posisional(const char *angka, int basis) {
     ll hasil = 0;
     int panjang = strlen(angka);
     for (int i = 0; i < panjang; i++) {
-        char c = toupper(angka[i]);
+        char c = toupper(angka[i]); 
         int nilai;
 
         if (c >= '0' && c <= '9') nilai = c - '0';
