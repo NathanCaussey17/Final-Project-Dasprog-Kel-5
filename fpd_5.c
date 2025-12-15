@@ -169,7 +169,7 @@ void Kalkulator_Resistor_Paralel () {
 
     printf("Rtotal = %.2lf Ohm\n", Rtotal);
 }
-void cetak_integer(long long n, int basis) {
+void cetak_integer(ll n, int basis) {
     if (n == 0) return;
     cetak_integer(n / basis, basis);
     putchar(digit[n % basis]);
@@ -183,7 +183,7 @@ void Desimal_Ke_Lainnya() {
     printf("Masukkan bilangan desimal: ");
     scanf("%lf", &x);
 
-    n = (long long)x;
+    n = (ll)x;
     frac = x - n;
 
     printf("Biner: ");
@@ -192,7 +192,7 @@ void Desimal_Ke_Lainnya() {
 
     if (frac > 0) {
         putchar('.');
-        double f = frac;
+        D f = frac;
         for (i = 0; i < 10; i++) {
             f *= 2;
             int d = (int)f;
@@ -210,7 +210,7 @@ void Desimal_Ke_Lainnya() {
 
     if (frac > 0) {
         putchar('.');
-        double f = frac;
+        D f = frac;
         for (i = 0; i < 10; i++) {
             f *= 8;
             int d = (int)f;
@@ -227,7 +227,7 @@ void Desimal_Ke_Lainnya() {
 
     if (frac > 0) {
         putchar('.');
-        double f = frac;
+        D f = frac;
         for (i = 0; i < 10; i++) {
             f *= 16;
             int d = (int)f;
