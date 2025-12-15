@@ -234,7 +234,7 @@ ll konversi_posisional(const char *angka, int basis) {
     ll hasil = 0;
     int panjang = strlen(angka);
     for (int i = 0; i < panjang; i++) {
-        char c = toupper(angka[i]); // support huruf kecil
+        char c = toupper(angka[i]);
         int nilai;
 
         if (c >= '0' && c <= '9') nilai = c - '0';
