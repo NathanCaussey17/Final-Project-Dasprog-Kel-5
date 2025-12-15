@@ -25,19 +25,19 @@ FUngsi lainnya ke desimal : Disini kita membuat fungsi dengan parameter alamat k
 <img width="1440" height="844" alt="Pilihan 1" src="https://github.com/user-attachments/assets/7ab4dce8-aacd-4d03-8523-c5af5d25a8d6" />  
 # Opsi 2 Kalkulator :  
 <img width="1440" height="844" alt="Pilihan 2" src="https://github.com/user-attachments/assets/3219632c-db27-4221-943d-b4edfa12db76" />  
-# Opsi 3 Kalkulator** :  
+# Opsi 3 Kalkulator :  
 <img width="1440" height="844" alt="Pilihan 3" src="https://github.com/user-attachments/assets/d49806d0-4f69-41a8-acd5-ce07e830354c" />  
-# Opsi 4 Kalkulator** :  
+# Opsi 4 Kalkulator :  
 <img width="1440" height="844" alt="Pilihan 4" src="https://github.com/user-attachments/assets/3e399718-ce3e-4475-9f3b-dd6ba4eb80ef" />  
-# Opsi 5 Kalkulator** :  
+# Opsi 5 Kalkulator :  
 <img width="1440" height="844" alt="Pilihan 5" src="https://github.com/user-attachments/assets/fb6aeb67-02bc-4df0-91b5-b71b80aa65cb" />    
-# Opsi 6 Kalkulator** :  
+# Opsi 6 Kalkulator :  
 <img width="1440" height="844" alt="Pilihan 6" src="https://github.com/user-attachments/assets/ee196fe6-35dd-4edd-9ba4-504e5a8a7dd7" />    
-# Opsi 7 Kalkulator** :  
+# Opsi 7 Kalkulator :  
 <img width="1440" height="844" alt="Pilihan 7" src="https://github.com/user-attachments/assets/af9f4f34-a473-44e4-a5ac-fb652f073cd4" />    
-# Opsi 8 Kalkulator** :  
+# Opsi 8 Kalkulator :  
 <img width="1440" height="844" alt="Pilihan 8" src="https://github.com/user-attachments/assets/f56465cd-02bc-4c29-9f31-4e9a9b9042e9" />    
-# Opsi 9 Kalkulator** :  
+# Opsi 9 Kalkulator :  
 <img width="1440" height="844" alt="Pilihan 9" src="https://github.com/user-attachments/assets/7adc26ac-501f-40d8-bac3-d3a960e2424f" />    
 
 
