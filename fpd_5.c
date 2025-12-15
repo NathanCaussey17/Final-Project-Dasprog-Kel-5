@@ -109,7 +109,7 @@ void Kalkulator_Daya_Listrik () {
 }
 void Kalkulator_Resistor_Seri () {  
     int n;
-    D R, total = 0;
+    D R, total = 0.0;
     
     printf("Masukkan jumlah resistor: ");
     scanf("%d", &n);
